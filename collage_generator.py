@@ -2,22 +2,21 @@ import os
 from PIL import Image
 import random
 
-def generate_collage(input_image_path, collage_folder_path, output_image_path, tile_size=(100, 100)):
+def generate_collage(input_image_path, collage_folder_path, output_image_path, num_tiles=(25, 25)):
     input_image = Image.open(input_image_path.encode('utf-8'))
 
     input_width, input_height = input_image.size
-    num_tiles_x = input_width // tile_size[0]
-    num_tiles_y = input_height // tile_size[1]
+    tile_size = (input_width // num_tiles[0], input_height // num_tiles[1])
 
-    collage_width = num_tiles_x * tile_size[0]
-    collage_height = num_tiles_y * tile_size[1]
+    collage_width = num_tiles[0] * tile_size[0]
+    collage_height = num_tiles[1] * tile_size[1]
     collage = Image.new('RGB', (collage_width, collage_height))
 
     collage_files = os.listdir(collage_folder_path)
     collage_files = [file for file in collage_files if file.lower().endswith(('.png', '.jpg', '.jpeg'))]
 
-    for y in range(num_tiles_y):
-        for x in range(num_tiles_x):
+    for y in range(num_tiles[1]):
+        for x in range(num_tiles[0]):
             # Crop the tile from the input image
             tile_box = (x * tile_size[0], y * tile_size[1], (x + 1) * tile_size[0], (y + 1) * tile_size[1])
             tile = input_image.crop(tile_box)
