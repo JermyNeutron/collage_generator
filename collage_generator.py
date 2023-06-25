@@ -98,6 +98,6 @@ def generate_collage(input_image_path, collage_folder_path, output_image_path, n
 input_image_path = "c:/Users/Jeremy/Desktop/input image/mickey-minnie-mouse100.jpg"
 collage_folder_path = "c:/Users/Jeremy/Desktop/collagefolder"
 output_image_path = "c:/Users/Jeremy/Desktop/outputfolder/output_collage.jpg"
-num_tiles = (24, 24)
+num_tiles = (50, 50)
 
 generate_collage(input_image_path, collage_folder_path, output_image_path, num_tiles)
